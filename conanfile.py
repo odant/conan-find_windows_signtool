@@ -7,7 +7,7 @@ class FindWindowsSigntool(ConanFile):
     license = "MIT"
     url = "https://github.com/odant/conan-find_windows_signtool"
     description = "Python module for find path Microsoft signtool"
-    settings = {"os": ["Windows"], "arch": ["x86", "x86_64"]}
+    settings = {"os": ["Windows"]}
     exports = "*"
     build_policy = "missing"
     
