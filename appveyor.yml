@@ -22,11 +22,14 @@ install:
   - set PATH=%PYTHON%;%PYTHON%\\Scripts\\;%PATH%
   - pip install conan
   - pip install conan_package_tools
+  - pip install nose2
 
   - conan user
   
 build: false
   
 test_script:
+  - python --version
+  - nose2
   - python build.py
 
