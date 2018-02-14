@@ -1,10 +1,11 @@
-import platform
+import winreg
+import os
 
 
-import winreg, os
+from conans.errors import ConanException
 
 
-def _get_winsdk_bin_pathes():
+def get_winsdk_bin_pathes():
     ret = []
     hk = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "Software\\Microsoft\\Windows Kits\\Installed Roots")
     # Find SDK 8.x
@@ -34,8 +35,8 @@ def _get_winsdk_bin_pathes():
 def find_signtool(arch):
     if arch == "x86_64":
         arch = "x64"
-    for winsdk_path in _get_winsdk_bin_pathes():
+    for winsdk_path in get_winsdk_bin_pathes():
         signtool = os.path.join(winsdk_path, arch, "signtool.exe")
-        if os.path.exists(signtool):
+        if os.path.isfile(signtool):
             return signtool
-    raise Exception("Can`t find signtool.exe!")
+    raise ConanException("Can`t find signtool.exe!")
