@@ -1,10 +1,6 @@
 import platform
 
 
-if platform.system() != "Windows":
-   raise Exception("Only Windows support!")
-  
-
 import winreg, os
 
 
